@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+</head>
+
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>Header 1</th>
+                <th>Header 2</th>
+                <th>Header 3</th>
+                <th>Select</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Row 1, Column 1</td>
+                <td>Row 1, Column 2</td>
+                <td>Row 1, Column 3</td>
+                <td><input type="checkbox" class="row-select"></td>
+            </tr>
+            <tr>
+                <td>Row 2, Column 1</td>
+                <td>Row 2, Column 2</td>
+                <td>Row 2, Column 3</td>
+                <td><input type="checkbox" class="row-select"></td>
+            </tr>
+            <tr>
+                <td>Row 3, Column 1</td>
+                <td>Row 3, Column 2</td>
+                <td>Row 3, Column 3</td>
+                <td><input type="checkbox" class="row-select"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        // create an empty list to store the row numbers
+        var selectedRows = [];
+
+        // add a change event listener to the checkboxes
+        $('.row-select').change(function () {
+            // get the row number of the selected checkbox
+            var rowNumber = $(this).closest('tr').index();
+
+            // check if the checkbox is selected or deselected
+            if ($(this).is(':checked')) {
+                // add the row number to the list if it's not already in the list
+                if (!selectedRows.includes(rowNumber)) {
+                    selectedRows.push(rowNumber);
+                }
+            } else {
+                // remove the row number from the list if it's in the list
+                var index = selectedRows.indexOf(rowNumber);
+                if (index !== -1) {
+                    selectedRows.splice(index, 1);
+                }
+            }
+
+            // print the list of selected row numbers to the console
+            console.log(selectedRows);
+        });
+
+    </script>
+
+</body>
+
+</html>
